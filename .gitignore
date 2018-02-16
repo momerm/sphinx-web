@@ -1,0 +1,12 @@
+# Webstorm files
+.idea/
+
+#Node files
+node_modules/
+package-lock.json
+
+#Temp files
+"keygen/test keys.txt"
+
+#Compiled files
+"client/js/sphinxclient.bundle.js"

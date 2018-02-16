@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <title>Sphinx</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script src="js/sphinxclient.bundle.js" defer></script>
+</head>
+<body>
+<h1>Sphinx anonymous remailer</h1>
+<div class="container">
+    <form id="form">
+        <label for="from">From</label>
+        <input type="text" id="from" name="from" placeholder="From address...">
+
+        <label for="to">To</label>
+        <input type="text" id="to" name="to" placeholder="To address...">
+
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="Subject...">
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Write something..." style="height:200px"></textarea>
+
+        <input type="submit" value="Send" id="send">
+    </form>
+</div>
+</body>
+</html>
