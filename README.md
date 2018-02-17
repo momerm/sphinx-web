@@ -34,5 +34,5 @@ The benchmark server is a special node that routes messages back to itself and m
 
 To run the benchmark make sure you have already started the relay servers with `npm start`. Then run
 ````
-npm benchmark
+npm run benchmark
 ````
