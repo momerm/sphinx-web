@@ -24,9 +24,8 @@ Then you can start up the servers.
 ````
 npm start
 ````
-You can access the the sphinx client from any of the mix nodes. 
-For example `http://127.0.0.1:8081`.
-You can access the test mail server on `http://127.0.0.1:1026` to view the received messages.
+You can access the the sphinx client at `http://127.0.0.1:8080` in your browser.
+You can access the test mail server at `http://127.0.0.1:1026` to view the received messages.
 
 ## How to run the benchmark
 Sphinx-web includes a benchmark to test end to end performance.
