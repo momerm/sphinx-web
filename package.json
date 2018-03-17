@@ -5,14 +5,15 @@
   "main": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-server01": "node-dev \"./relay server/relay server.js\" 8081 pLRfpBauM3fOWBEAUPWAJ4lTrNwvkY4u8wY8is/9wGA=",
-    "start-server02": "node-dev \"./relay server/relay server.js\" 8082 bMNiwXHsfVBP2d2tCr1PifKuMqJTXks+j2yMjMFTeRA=",
-    "start-server03": "node-dev \"./relay server/relay server.js\" 8083 zEoSBpxqlf3ae04sHwtGxPKtDGS7piGTJNiTkZlHRi8=",
-    "start-server04": "node-dev \"./relay server/relay server.js\" 8084 SeH82pcRLZubT4fxiTBRd1rnajEb1yl0WNYwJYHo5pQ=",
-    "start-server05": "node-dev \"./relay server/relay server.js\" 8085 PDHq+C16hOp6fpxzqwSjRUVX54o5VQhP4iAyMp30vCs=",
-    "start-directory": "cd \"directory server\" && node-dev \"directory server.js\"",
-    "mailserver": "grunt maildev:test",
-    "start": "npm-run-all -p -r start-server01 start-server02 start-server03 start-server04 start-server05 start-directory mailserver",
+    "start-relay1": "node-dev \"./relay server/relay server.js\" 8001 pLRfpBauM3fOWBEAUPWAJ4lTrNwvkY4u8wY8is/9wGA=",
+    "start-relay2": "node-dev \"./relay server/relay server.js\" 8002 bMNiwXHsfVBP2d2tCr1PifKuMqJTXks+j2yMjMFTeRA=",
+    "start-relay3": "node-dev \"./relay server/relay server.js\" 8003 zEoSBpxqlf3ae04sHwtGxPKtDGS7piGTJNiTkZlHRi8=",
+    "start-relay4": "node-dev \"./relay server/relay server.js\" 8004 SeH82pcRLZubT4fxiTBRd1rnajEb1yl0WNYwJYHo5pQ=",
+    "start-relay5": "node-dev \"./relay server/relay server.js\" 8005 PDHq+C16hOp6fpxzqwSjRUVX54o5VQhP4iAyMp30vCs=",
+    "start-directory": "cd \"directory server\" && node-dev \"directory server.js\" 8081",
+    "start-webserver": "cd \"web server\" && node-dev \"web server.js\" 8080",
+    "start-mailserver": "grunt maildev:test",
+    "start": "npm-run-all -p -r start-relay1 start-relay2 start-relay3 start-relay4 start-relay5 start-directory start-webserver start-mailserver",
     "benchmark": "node benchmark/benchmark.js"
   },
   "repository": {

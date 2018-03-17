@@ -44,7 +44,6 @@ let transporter = nodemailer.createTransport({
 
 const app = express();
 app.use(bodyParser.raw({type: 'application/octet-stream'}));
-app.use(express.static(__dirname + "/../client"));
 app.use(cors());
 app.post('/', function (req, res) {
     let packet = req.body;

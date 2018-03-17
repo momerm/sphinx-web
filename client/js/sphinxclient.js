@@ -4,7 +4,7 @@ const SphinxParams = require("sphinx-js").SphinxParams;
 const base64js = require('base64-js');
 const bytesjs = require("bytes.js");
 
-const directory_server = "127.0.0.1:8080";
+const directory_server = "127.0.0.1:8081";
 const ctx = new CTX("NIST256");
 const sha = ctx.ECDH.HASH_TYPE;
 // Key used to verify the pki received from a directory server.
