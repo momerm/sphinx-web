@@ -18,10 +18,10 @@ if(process.argv.length !== 4) {
 }
 const port = process.argv[2];
 
-let params = new SphinxParams();
-let ctx = params.ctx;
-let params_dict = {};
-params_dict[JSON.stringify([params.max_len, params.m])] = params;
+const p = new SphinxParams();
+const ctx = p.ctx;
+const params_dict = {};
+params_dict[JSON.stringify([p.max_len, p.m])] = p;
 const private_key = ctx.BIG.fromBytes(base64js.toByteArray(process.argv[3]));
 
 let seen_tags = [];
@@ -37,21 +37,28 @@ function seen_tag(tag) {
     return false;
 }
 
-let transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
     port: 1025,
     ignoreTLS: true
 });
 
 const app = express();
-app.use(bodyParser.raw({type: 'application/octet-stream'}));
+app.use(bodyParser.raw({type: 'application/octet-stream', limit: '2mb'}));
 app.use(cors());
 app.post('/', function (req, res) {
     let packet = req.body;
     console.log(port + " Received a packet of length " + packet.length);
 
-    let [p, [header, delta]] = SC.unpack_message(params_dict, ctx, packet);
-    let tag, B, mac_key;
-    [tag, B, [header, delta], mac_key] = sphinx_process(p, private_key, header, delta);
+    let params, header, delta, tag, B, mac_key;
+    try {
+        [params, [header, delta]] = SC.unpack_message(params_dict, ctx, packet);
+        [tag, B, [header, delta], mac_key] = sphinx_process(params, private_key, header, delta);
+    } catch(err) {
+        res.writeHead(400, {'Content-Type': 'text/plain'});
+        res.end(port + " " + err);
+        return;
+    }
+
     // If the tag has been seen before, discard the message
     if(seen_tag(tag)) {
         res.writeHead(400, {'Content-Type': 'text/plain'});
@@ -61,8 +68,8 @@ app.post('/', function (req, res) {
     else {
         seen_tags.push(tag);
     }
-    let routing = SC.route_unpack(B);
 
+    let routing = SC.route_unpack(B);
     if (routing[0] === SC.Relay_flag) {
         let addr = routing[1];
         request({
@@ -114,7 +121,7 @@ app.post('/', function (req, res) {
     }
     else {
         res.writeHead(400, { 'Content-Type': 'text/plain' });
-        res.end(port + " Bad routing flag");
+        res.end(port + " Unrecognised routing flag " + routing[0]);
         return;
     }
 

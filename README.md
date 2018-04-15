@@ -29,9 +29,8 @@ You can access the test mail server at `http://127.0.0.1:1026` to view the recei
 
 ## How to run the benchmark
 Sphinx-web includes a benchmark to test end to end performance.
-The benchmark server is a special node that routes messages back to itself and measures the average time taken. Routing is done through five servers including itself, the final node.
+The benchmark server is a special node that routes messages through itself for five hops and measures the average time taken.
 
-To run the benchmark make sure you have already started the relay servers with `npm start`. Then run
 ````
 npm run benchmark
 ````
